@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Greeting Card & Document Formatter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.02);
+        }
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .card-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease;
+        }
+        .card-header p {
+            font-size: 17px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease;
+        }
+        .card-body {
+            padding: 35px;
+            line-height: 1.8;
+            color: #334155;
+        }
+        .card-body h2 {
+            color: #1e293b;
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            padding-left: 12px;
+        }
+        .formatted-text {
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #764ba2;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        .highlight-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .box {
+            background-color: #eff6ff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            color: #1e40af;
+        }
+        .floating-icon {
+            font-size: 40px;
+            text-align: center;
+            margin: 20px 0;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 500px) {
+            .highlight-box { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="card-header">
+        <h1>✨ Professional Document Formatter</h1>
+        <p>Created by Raisya Putri Nasywa</p>
+    </div>
+
+    <div class="card-body">
+        <div class="floating-icon">📝</div>
+
+        <h2>Perfect Text & Document Arrangement</h2>
+        <p>This project demonstrates my professional skill in organizing, formatting, and structuring text and documents beautifully, neatly, and clearly — exactly what is needed for the <strong>Document Review Specialist</strong> role.</p>
+
+        <div class="formatted-text">
+            "I understand that clear, well-organized, and properly formatted documents are very important. Good structure helps Artificial Intelligence systems read, understand, and process information correctly and accurately."
+        </div>
+
+        <h2>Formatting Skills Mastered:</h2>
+        <div class="highlight-box">
+            <div class="box">✅ Text Alignment</div>
+            <div class="box">✅ Heading Structure</div>
+            <div class="box">✅ Paragraph Spacing</div>
+            <div class="box">✅ Highlighting Important Points</div>
+            <div class="box">✅ Clear Separation of Content</div>
+            <div class="box">✅ Beautiful & Easy-to-Read Layout</div>
+        </div>
+
+        <p style="margin-top: 25px; text-align: center; font-weight: bold; color: #475569;">
+            🎯 Ready to organize and review all types of documents professionally for Alignerr!
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
