@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Digital Clock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #1a1a2e;
+            color: white;
+        }
+        .clock-container {
+            text-align: center;
+            padding: 40px 60px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        #time-display {
+            font-size: 80px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #00f5d4;
+            text-shadow: 0 0 20px rgba(0, 245, 212, 0.6);
+        }
+        #date-display {
+            font-size: 30px;
+            margin-top: 15px;
+            color: #a5f3fc;
+            font-weight: 300;
+        }
+        .info-text {
+            margin-top: 30px;
+            color: #94a3b8;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="clock-container">
+        <div id="time-display"></div>
+        <div id="date-display"></div>
+    </div>
+    <div class="info-text">
+        ⏱️ Accurate, Precise, and Always On Time — Ready for Professional Work
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            
+            // Waktu: Jam : Menit : Detik
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('time-display').textContent = `${hours} : ${minutes} : ${seconds}`;
+
+            // Tanggal & Hari
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            let dayName = days[now.getDay()];
+            let dateNum = now.getDate().toString().padStart(2, '0');
+            let monthName = months[now.getMonth()];
+            let year = now.getFullYear();
+
+            document.getElementById('date-display').textContent = `${dayName}, ${dateNum} ${monthName} ${year}`;
+        }
+
+        // Jalankan sekali saat buka
+        updateClock();
+        // Perbarui setiap 1 detik
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+</html>
