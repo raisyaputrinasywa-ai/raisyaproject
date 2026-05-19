@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Photo Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background-color: #f1f5f9;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #1e293b;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .photo-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .photo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .photo-image {
+            width: 100%;
+            height: 200px;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: #94a3b8;
+        }
+        .photo-info {
+            padding: 20px;
+        }
+        .photo-info h3 {
+            color: #1e293b;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .photo-info p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🖼️ Responsive Photo Gallery & Image Manager</h1>
+
+    <div class="gallery-grid">
+        <!-- GAMBAR 1 -->
+        <div class="photo-card">
+            <div class="photo-image">🏞️</div>
+            <div class="photo-info">
+                <h3>Landscape & Nature</h3>
+                <p>Collection of beautiful nature scenery images, labeled and organized properly.</p>
+                <span class="tag">#Nature</span>
+            </div>
+        </div>
+
+        <!-- GAMBAR 2 -->
+        <div class="photo-card">
+            <div class="photo-image">🏙️</div>
+            <div class="photo-info">
+                <h3>City & Buildings</h3>
+                <p>Urban photography collection, sorted by location and category for easy access.</p>
+                <span class="tag">#Architecture</span>
+            </div>
+        </div>
+
+        <!-- GAMBAR 3 -->
+        <div class="photo-card">
+            <div class="photo-image">🚗</div>
+            <div class="photo-info">
+                <h3>Transportation Data</h3>
+                <p>Vehicle and transport images, labeled clearly for AI training and analysis.</p>
+                <span class="tag">#Vehicles</span>
+            </div>
+        </div>
+
+        <!-- GAMBAR 4 -->
+        <div class="photo-card">
+            <div class="photo-image">🍎</div>
+            <div class="photo-info">
+                <h3>Food & Objects</h3>
+                <p>Everyday objects and food items dataset, organized with accurate descriptions.</p>
+                <span class="tag">#Objects</span>
+            </div>
+        </div>
+
+        <!-- GAMBAR 5 -->
+        <div class="photo-card">
+            <div class="photo-image">👤</div>
+            <div class="photo-info">
+                <h3>People & Activities</h3>
+                <p>Human activity images, categorized by action type and environment safely.</p>
+                <span class="tag">#People</span>
+            </div>
+        </div>
+
+        <!-- GAMBAR 6 -->
+        <div class="photo-card">
+            <div class="photo-image">🔧</div>
+            <div class="photo-info">
+                <h3>Technical & Tools</h3>
+                <p>Industrial tools and equipment images, labeled professionally for technical use.</p>
+                <span class="tag">#Technical</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
