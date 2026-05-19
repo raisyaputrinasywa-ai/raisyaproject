@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Knowledge Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .quiz-container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 550px;
+            padding: 35px;
+        }
+        h2 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+        .question-number {
+            color: #718096;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        .question-text {
+            font-size: 19px;
+            color: #1a202c;
+            line-height: 1.6;
+            margin-bottom: 22px;
+            font-weight: 500;
+        }
+        .option {
+            display: block;
+            width: 100%;
+            padding: 14px 18px;
+            margin: 12px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            background-color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        .option:hover {
+            border-color: #4299e1;
+            background-color: #ebf8ff;
+            transform: translateX(5px);
+        }
+        .correct {
+            background-color: #9ae6b4 !important;
+            border-color: #2f855a !important;
+            color: #1c4532 !important;
+            font-weight: bold;
+        }
+        .wrong {
+            background-color: #feb2b2 !important;
+            border-color: #c53030 !important;
+            color: #742a2a !important;
+        }
+        .score-board {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #2b6cb0;
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #edf2f7;
+            border-radius: 12px;
+        }
+        .next-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background-color: #3182ce;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            cursor: pointer;
+            display: none;
+            font-weight: 600;
+        }
+        .next-btn:hover {
+            background-color: #2b6cb0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2>📚 Interactive Knowledge Quiz</h2>
+
+    <div class="question-number" id="question-num"></div>
+    <div class="question-text" id="question-text"></div>
+
+    <div class="options-container" id="options-container">
+        <button class="option" onclick="checkAnswer(0)" id="opt0"></button>
+        <button class="option" onclick="checkAnswer(1)" id="opt1"></button>
+        <button class="option" onclick="checkAnswer(2)" id="opt2"></button>
+        <button class="option" onclick="checkAnswer(3)" id="opt3"></button>
+    </div>
+
+    <div class="score-board">🏆 Score: <span id="score-value">0</span></div>
+    <button class="next-btn" id="next-btn" onclick="loadNextQuestion()">Next Question ➡️</button>
+</div>
+
+<script>
+    const questions = [
+        {
+            question: "What does HTML stand for?",
+            options: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks Text Language", "Hyper Tool Multi Language"],
+            correct: 0
+        },
+        {
+            question: "Which technology is used to style web pages?",
+            options: ["HTML", "XML", "CSS", "PHP"],
+            correct: 2
+        },
+        {
+            question: "What is the main function of JavaScript?",
+            options: ["To style the page", "To make the page interactive", "To create database", "To design layout"],
+            correct: 1
+        },
+        {
+            question: "Which one is used to store data temporarily in a website?",
+            options: ["Database", "Server", "Local Storage", "File Manager"],
+            correct: 2
+        },
+        {
+            question: "What is the first step in data processing for AI?",
+            options: ["Selling data", "Collecting & Labeling Data", "Deleting data", "Ignoring data"],
+            correct: 1
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionNumEl = document.getElementById('question-num');
+    const questionTextEl = document.getElementById('question-text');
+    const optionsEl = [
+        document.getElementById('opt0'),
+        document.getElementById('opt1'),
+        document.getElementById('opt2'),
+        document.getElementById('opt3')
+    ];
+    const scoreValueEl = document.getElementById('score-value');
+    const nextBtnEl = document.getElementById('next-btn');
+
+    function loadQuestion() {
+        const q = questions[currentQuestion];
+        questionNumEl.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+        questionTextEl.textContent = q.question;
+        q.options.forEach((opt, i) => {
+            optionsEl[i].textContent = opt;
+            optionsEl[i].className = 'option';
+            optionsEl[i].disabled = false;
+        });
+        nextBtnEl.style.display = 'none';
+    }
+
+    function checkAnswer(index) {
+        const correctIndex = questions[currentQuestion].correct;
+        // Tandai benar & salah
+        if(index === correctIndex) {
+            optionsEl[index].classList.add('correct');
+            score++;
+            scoreValueEl.textContent = score;
+        } else {
+            optionsEl[index].classList.add('wrong');
+            optionsEl[correctIndex].classList.add('correct');
+        }
+        // Matikan tombol biar gak diubah
+        optionsEl.forEach(btn => btn.disabled = true);
+        nextBtnEl.style.display = 'block';
+    }
+
+    function loadNextQuestion() {
+        currentQuestion++;
+        if(currentQuestion < questions.length) {
+            loadQuestion();
+        } else {
+            questionTextEl.textContent = "🎉 Quiz Completed! Great Job!";
+            questionNumEl.textContent = "Finished";
+            optionsEl.forEach(btn => btn.style.display = 'none');
+            nextBtnEl.textContent = "Play Again";
+            nextBtnEl.onclick = () => { location.reload(); };
+        }
+    }
+
+    // Mulai kuisnya
+    loadQuestion();
+</script>
+
+</body>
+</html>
